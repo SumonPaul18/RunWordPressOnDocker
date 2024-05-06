@@ -26,14 +26,15 @@
 
     # Defines which compose version to use
     version: "20" 
-
+    services:
     # db is a service name.
       db:
         # image: here you define your image with tag.  
         image: mysql:5.7
         # Restart: meaning if the container stops running for any reason, it will restart the process immediately.
-        ports:
         restart: always
+        volumes:
+          - $PWD/mysql/:/var/lib/mysql
         environment:
           MYSQL_ROOT_PASSWORD: centos@123
           MYSQL_DATABASE: wordpress
@@ -47,7 +48,7 @@
           - db
         image: wordpress:latest
         restart: always
-    
+        ports:
           - "8000:80"
         # defines the port that the WordPress container will use and the full path will look like this: http://localhost:8000
         environment:
@@ -57,7 +58,7 @@
           WORDPRESS_DB_NAME: wordpress
         # Similar to MySQL image variables, the last four lines define the main variables needed for the WordPress container to work properly with the MySQL container.
         volumes:
-          ["./:/var/www/html"]
+          - $PWD/wordpress/:/var/www/html
     volumes:
       mysql: {}
 
