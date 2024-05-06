@@ -28,10 +28,7 @@ nano docker-compose.yml
 #### Defines which compose version to use
 version: "20" 
 
-Services line define which Docker images to run. In this case, it will be MySQL server and WordPress image.
-services:
-  
-  #db is a service name.
+  #### db is a service name.
   db:
     # image: here you define your image with tag.  
     image: mysql:5.7
