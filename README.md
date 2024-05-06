@@ -6,7 +6,7 @@
 
 
 #### Verify docker compose version
- -docker compose version
+docker compose version
 
 #### Create a new project directory:
 
