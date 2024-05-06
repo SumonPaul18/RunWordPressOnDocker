@@ -55,7 +55,7 @@ version: "20"
       WORDPRESS_DB_USER: sysadmin
       WORDPRESS_DB_PASSWORD: centos@123
       WORDPRESS_DB_NAME: wordpress
-# Similar to MySQL image variables, the last four lines define the main variables needed for the WordPress container to work properly with the MySQL container.
+#### Similar to MySQL image variables, the last four lines define the main variables needed for the WordPress container to work properly with the MySQL container.
     volumes:
       ["./:/var/www/html"]
 volumes:
