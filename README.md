@@ -1,32 +1,31 @@
-++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Install Wordpress On Docker using Docker-Compose +
-++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-+++++++++++++++++++++++++++++
-+ Run Wordpress-MySQL       +
-+++++++++++++++++++++++++++++
+## Install Wordpress On Docker using Docker-Compose 
 
-#Verify docker compose version
+
+### Run Wordpress-MySQL      
+
+
+#### Verify docker compose version
 
 docker compose version
 
-#Create a new project directory:
+#### Create a new project directory:
 
 mkdir wordpress
 
-#Navigate to the new directory:
+#### Navigate to the new directory:
 
 cd wordpress
 
-#Create a yaml file.
+#### Create a yaml file.
 
 nano docker-compose.yml
 
-#Create a new docker-compose.yml file, and paste the contents below:
+#### Create a new docker-compose.yml file, and paste the contents below:
 
-#File Start Here
+### File Start Here with Description
 
-# Defines which compose version to use
+#### Defines which compose version to use
 version: "20" 
 
 # Services line define which Docker images to run. In this case, it will be MySQL server and WordPress image.
