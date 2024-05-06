@@ -14,27 +14,27 @@
 
 #### Navigate to the new directory:
 
-cd wordpress
+    cd wordpress
 
 #### Create a yaml file.
 
-nano docker-compose.yml
+    nano docker-compose.yml
 
 #### Create a new docker-compose.yml file, and paste the contents below:
 
 ### File Start Here with Description
 
 #### Defines which compose version to use
-version: "20" 
+    version: "20" 
 
   #### db is a service name.
-  db:
-    # image: here you define your image with tag.  
-    image: mysql:5.7
-    # Restart: meaning if the container stops running for any reason, it will restart the process immediately.
-    ports:
-    restart: always
-    environment:
+      db:
+        # image: here you define your image with tag.  
+        image: mysql:5.7
+        # Restart: meaning if the container stops running for any reason, it will restart the process immediately.
+        ports:
+        restart: always
+        environment:
       MYSQL_ROOT_PASSWORD: centos@123
       MYSQL_DATABASE: wordpress
       MYSQL_USER: sysadmin
