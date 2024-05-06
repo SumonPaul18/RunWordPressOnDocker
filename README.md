@@ -24,10 +24,10 @@
 
 ### File Start Here with Description
 
-#### Defines which compose version to use
+    # Defines which compose version to use
     version: "20" 
 
-  #### db is a service name.
+    # db is a service name.
       db:
         # image: here you define your image with tag.  
         image: mysql:5.7
@@ -61,31 +61,31 @@
     volumes:
       mysql: {}
 
-++++++++++++++++++++++++++++++++++++++++++  
+#### Save the .yml file
+
   
-#Docker Compose UP
+#### Docker Compose UP
 
-docker compose up -d
+        docker compose up -d
 
-#Check Docker Compose
+#### Check Docker Compose
 
-docker compose ps
+        docker compose ps
+    or
+        docker ps
+### #Open Browser
+        http://DockerHostIP:8000
 
-#Open Browser
-#http://yourip:8000
+#### 1st time setup the wordpress site:
 
-192.168.0.107:8000
+    Site Title:
+    User:
+    Pass:
+    Email:
 
-#1st time setup the wordpress site:
+### Now Enjoying! Your Wordpress Site.
 
-Site Title:
-User:
-Pass:
-Email:
-
-#Now Enjoying! Your Wordpress Site.
-
-++++++++++++++++++++++++++++++++++++++++
+---
 
 #Check docker PS
 
