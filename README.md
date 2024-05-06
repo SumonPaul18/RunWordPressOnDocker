@@ -10,7 +10,7 @@
 
 #### Create a new project directory:
 
-mkdir wordpress
+    mkdir wordpress
 
 #### Navigate to the new directory:
 
