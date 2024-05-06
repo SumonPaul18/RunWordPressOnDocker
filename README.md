@@ -22,7 +22,7 @@
 
 #### Create a new docker-compose.yml file, and paste the contents below:
 
-### File Start Here with Description
+##### File Start Here with Description
 
     # Defines which compose version to use
     version: "20" 
