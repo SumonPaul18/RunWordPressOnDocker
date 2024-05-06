@@ -1,9 +1,9 @@
 
 ## Install Wordpress On Docker using Docker-Compose 
 
-
+---
 ### Run Wordpress-MySQL      
-
+---
 
 #### Verify docker compose version
     docker compose version
@@ -71,9 +71,9 @@
 #### Check Docker Compose
 
         docker compose ps
-    or
+#### or
         docker ps
-### #Open Browser
+#### Open Browser
         http://DockerHostIP:8000
 
 #### 1st time setup the wordpress site:
@@ -85,78 +85,73 @@
 
 ### Now Enjoying! Your Wordpress Site.
 
+####  Now! Check docker PS
+
+    docker ps
+
+#### Now! Down docker compose
+
+    docker compose down
+---
+### Run Wordpress-MySql with phpMyAdmin
 ---
 
-#Check docker PS
-
-docker ps
-
-#Down docker compose
-
-docker compose down
-
-+++++++++++++++++++++++++++++++++++++++++
-#Run Wordpress-MySql with phpMyAdmin
-+++++++++++++++++++++++++++++++++++++++++
-
-version: "3"
-services:
-  db:
-    image: mysql:5.7
-    volumes:
-      - mysql_data:/var/lib/mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: centos@123
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: sysadmin
-      MYSQL_PASSWORD: centos@123
-    volumes:
-      -  ./mysql:/var/lib/mysql
+    version: "3"
+    services:
+      db:
+        image: mysql:5.7
+        volumes:
+          - mysql_data:/var/lib/mysql
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: centos@123
+          MYSQL_DATABASE: wordpress
+          MYSQL_USER: sysadmin
+          MYSQL_PASSWORD: centos@123
+        volumes:
+          -  ./mysql:/var/lib/mysql
       
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
-    depends_on:
-      - db
-    restart: always
-    environment:
-      PMA_HOST: db
-      PMA_USER: sysadmin
-      PMA_PASSWORD: centos@123
-    ports:
-      - "8080:80"
+      phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        depends_on:
+          - db
+        restart: always
+        environment:
+          PMA_HOST: db
+          PMA_USER: sysadmin
+          PMA_PASSWORD: centos@123
+        ports:
+          - "8080:80"
       
-   wordpress:
-    depends_on:
-      - db
-    image: wordpress:latest
-    restart: always
-    ports:
-      - "8000:80"
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: sysadmin
-      WORDPRESS_DB_PASSWORD: centos@123
-      WORDPRESS_DB_NAME: wordpress
+       wordpress:
+        depends_on:
+          - db
+        image: wordpress:latest
+        restart: always
+        ports:
+          - "8000:80"
+        environment:
+          WORDPRESS_DB_HOST: db:3306
+          WORDPRESS_DB_USER: sysadmin
+          WORDPRESS_DB_PASSWORD: centos@123
+          WORDPRESS_DB_NAME: wordpress
       
+        volumes:
+          ["./wordpress:/var/www/html"]
     volumes:
-      ["./wordpress:/var/www/html"]
-volumes:
-  mysql_data:
-  
-++++++++++++++++++++++++++++++++++++++++++
-
-#Docker Compose UP
-
-docker compose up -d  
+      mysql_data:
   
 
-#Access phpMyAdmin interface:
+#### Docker Compose UP
 
-http://localhost:8080/
+    docker compose up -d  
+  
 
-#Access wordpress interface:
+#### Access phpMyAdmin interface:
 
-192.168.0.107:8000
+    http://DockerHostIp:8080/
 
-++++++++++++++++++++++++++++++++++++++++++
+#### Access wordpress interface:
+
+
+-- END --
