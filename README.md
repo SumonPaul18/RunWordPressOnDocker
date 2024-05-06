@@ -35,31 +35,31 @@
         ports:
         restart: always
         environment:
-      MYSQL_ROOT_PASSWORD: centos@123
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: sysadmin
-      MYSQL_PASSWORD: centos@123
-      # Previous four lines define the main variables needed for the MySQL container to work: database, database username, database user password, and the MySQL root password.
+          MYSQL_ROOT_PASSWORD: centos@123
+          MYSQL_DATABASE: wordpress
+          MYSQL_USER: sysadmin
+          MYSQL_PASSWORD: centos@123
+        # Previous four lines define the main variables needed for the MySQL container to work: database, database username, database user password, and the MySQL root password.
   
-#wordpress are another service 
-  wordpress:
-    depends_on:
-      - db
-    image: wordpress:latest
-    restart: always
+        #wordpress are another service 
+      wordpress:
+        depends_on:
+          - db
+        image: wordpress:latest
+        restart: always
     
-      - "8000:80"
-      # defines the port that the WordPress container will use and the full path will look like this: http://localhost:8000
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: sysadmin
-      WORDPRESS_DB_PASSWORD: centos@123
-      WORDPRESS_DB_NAME: wordpress
-#### Similar to MySQL image variables, the last four lines define the main variables needed for the WordPress container to work properly with the MySQL container.
+          - "8000:80"
+        # defines the port that the WordPress container will use and the full path will look like this: http://localhost:8000
+        environment:
+          WORDPRESS_DB_HOST: db:3306
+          WORDPRESS_DB_USER: sysadmin
+          WORDPRESS_DB_PASSWORD: centos@123
+          WORDPRESS_DB_NAME: wordpress
+        # Similar to MySQL image variables, the last four lines define the main variables needed for the WordPress container to work properly with the MySQL container.
+        volumes:
+          ["./:/var/www/html"]
     volumes:
-      ["./:/var/www/html"]
-volumes:
-  mysql: {}
+      mysql: {}
 
 ++++++++++++++++++++++++++++++++++++++++++  
   
