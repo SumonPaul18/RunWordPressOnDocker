@@ -96,6 +96,18 @@
 ---
 ### Run Wordpress-MySql with phpMyAdmin
 ---
+#### Create a new project directory:
+
+    mkdir wordpress
+
+#### Navigate to the new directory:
+
+    cd wordpress
+
+#### Create a yaml file.
+
+    nano docker-compose.yml
+#### Create a new docker-compose.yml file, and paste the contents below:
 
     version: "3"
     services:
@@ -110,7 +122,7 @@
           MYSQL_USER: sysadmin
           MYSQL_PASSWORD: centos@123
         volumes:
-          -  ./mysql:/var/lib/mysql
+          - $PWD/mysql/:/var/lib/mysql
       
       phpmyadmin:
         image: phpmyadmin/phpmyadmin:latest
@@ -138,21 +150,25 @@
           WORDPRESS_DB_NAME: wordpress
       
         volumes:
-          ["./wordpress:/var/www/html"]
-    volumes:
-      mysql_data:
+          - $PWD/wordpress/:/var/www/html
   
 
 #### Docker Compose UP
 
     docker compose up -d  
+
+#### Check Docker Compose
+
+        docker compose ps
+#### or
+        docker ps
   
 
-#### Access phpMyAdmin interface:
+#### Access phpMyAdmin Dashboard:
 
     http://DockerHostIp:8080/
 
-#### Access wordpress interface:
-
+#### Access wordpress Dashboard:
+    http://DockerHostIP:8000
 
 -- END --
