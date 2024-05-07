@@ -70,10 +70,10 @@
         docker compose up -d
 
 #### Check Docker Compose
-
         docker compose ps
 #### or
         docker ps
+
 #### Open Browser
         http://DockerHostIP:8000
 
@@ -158,7 +158,6 @@
     docker compose up -d  
 
 #### Check Docker Compose
-
         docker compose ps
 #### or
         docker ps
