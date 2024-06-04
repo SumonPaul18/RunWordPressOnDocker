@@ -67,15 +67,15 @@
   
 #### Docker Compose UP
 
-        docker compose up -d
+    docker compose up -d
 
 #### Check Docker Compose
-        docker compose ps
+    docker compose ps
 #### or
-        docker ps
+    docker ps
 
 #### Open Browser
-        http://DockerHostIP:8000
+    http://DockerHostIP:8000
 
 #### 1st time setup the wordpress site:
 
