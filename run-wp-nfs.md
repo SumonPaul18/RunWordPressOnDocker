@@ -42,7 +42,7 @@
         # Restart: meaning if the container stops running for any reason, it will restart the process immediately.
         restart: always
         volumes:
-          - /nfs-share/mysql/:/var/lib/mysql
+          - /nfs-share/wordpress/mysql/:/var/lib/mysql
         environment:
           MYSQL_ROOT_PASSWORD: centos@123
           MYSQL_DATABASE: wordpress
@@ -66,7 +66,7 @@
           WORDPRESS_DB_NAME: wordpress
         # Similar to MySQL image variables, the last four lines define the main variables needed for the WordPress container to work properly with the MySQL container.
         volumes:
-          - /nfs-share/wordpress/:/var/www/html
+          - /nfs-share/wordpress/wordpress-data/:/var/www/html
 
 #### Save the .yml file
 
