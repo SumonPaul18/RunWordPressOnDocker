@@ -8,13 +8,19 @@
 #### Verify docker compose version
     docker compose version
 
-#### Create a new project directory:
-
-    mkdir wordpress
-
+#### Install NFS Client & Configuration with NFS Server:
+    
+    apt update -y
+    apt install nfs-common -y
+    mkdir -p /nfs-share
+    chmod 777 /nfs-share
+    mount 192.168.0.96:/nfs-share /nfs-share
+    ls -l /nfs-share
+    
+    
 #### Navigate to the new directory:
 
-    cd wordpress
+    mkdir -p /nfs-share/wordpress mysql
 
 #### Create a yaml file.
 
@@ -25,7 +31,7 @@
 ##### File Start Here with Description
 
     # Defines which compose version to use
-    version: "20" 
+    version: "3.8" 
     services:
     # db is a service name.
       db:
@@ -34,7 +40,7 @@
         # Restart: meaning if the container stops running for any reason, it will restart the process immediately.
         restart: always
         volumes:
-          - $PWD/mysql/:/var/lib/mysql
+          - /nfs-share/mysql/:/var/lib/mysql
         environment:
           MYSQL_ROOT_PASSWORD: centos@123
           MYSQL_DATABASE: wordpress
@@ -58,9 +64,7 @@
           WORDPRESS_DB_NAME: wordpress
         # Similar to MySQL image variables, the last four lines define the main variables needed for the WordPress container to work properly with the MySQL container.
         volumes:
-          - $PWD/wordpress/:/var/www/html
-    volumes:
-      mysql: {}
+          - /nfs-share/wordpress/:/var/www/html
 
 #### Save the .yml file
 
