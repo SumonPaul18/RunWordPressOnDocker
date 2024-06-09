@@ -23,6 +23,8 @@
     mkdir -p /nfs-share/wordpress
     mkdir -p /nfs-share/wordpress/wordpress-data /mysql
     mkdir -p /nfs-share/wordpress/mysql
+    cd /nfs-share/wordpress
+    ls
 
 #### Create a yaml file.
 
