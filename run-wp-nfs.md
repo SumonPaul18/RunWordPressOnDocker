@@ -19,8 +19,9 @@
     
     
 #### Navigate to the new directory:
-
-    mkdir -p /nfs-share/wordpress mysql
+   
+    mkdir -p /nfs-share/wordpress
+    mkdir -p /nfs-share/wordpress/wordpress-data mysql
 
 #### Create a yaml file.
 
