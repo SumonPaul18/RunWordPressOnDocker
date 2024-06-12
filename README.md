@@ -59,8 +59,6 @@
         # Similar to MySQL image variables, the last four lines define the main variables needed for the WordPress container to work properly with the MySQL container.
         volumes:
           - $PWD/wordpress/:/var/www/html
-    volumes:
-      mysql: {}
 
 #### Save the .yml file
 
