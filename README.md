@@ -49,7 +49,7 @@
         image: wordpress:latest
         restart: always
         ports:
-          - "8000:80"
+          - "8003:80"
         # defines the port that the WordPress container will use and the full path will look like this: http://localhost:8000
         environment:
           WORDPRESS_DB_HOST: db:3306
