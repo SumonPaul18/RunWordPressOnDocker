@@ -35,14 +35,10 @@
 
 ##### File Start Here with Description
 
-    # Defines which compose version to use
     version: "3.8" 
     services:
-    # db is a service name.
-      db:
-        # image: here you define your image with tag.  
+      db: 
         image: mysql:5.7
-        # Restart: meaning if the container stops running for any reason, it will restart the process immediately.
         restart: always
         volumes:
           - /nfs-share/wordpress/mysql/:/var/lib/mysql
@@ -51,9 +47,7 @@
           MYSQL_DATABASE: wordpress
           MYSQL_USER: sysadmin
           MYSQL_PASSWORD: centos@123
-        # Previous four lines define the main variables needed for the MySQL container to work: database, database username, database user password, and the MySQL root password.
-  
-        #wordpress are another service 
+          
       wordpress:
         depends_on:
           - db
@@ -61,13 +55,11 @@
         restart: always
         ports:
           - "8000:80"
-        # defines the port that the WordPress container will use and the full path will look like this: http://localhost:8000
         environment:
           WORDPRESS_DB_HOST: db:3306
           WORDPRESS_DB_USER: sysadmin
           WORDPRESS_DB_PASSWORD: centos@123
           WORDPRESS_DB_NAME: wordpress
-        # Similar to MySQL image variables, the last four lines define the main variables needed for the WordPress container to work properly with the MySQL container.
         volumes:
           - /nfs-share/wordpress/wordpress-data/:/var/www/html
 
