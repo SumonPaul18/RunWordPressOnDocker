@@ -52,7 +52,7 @@ volumes:
            
 EOF
 
-cd /root/wordpress/
+cd /nfs-share/wordpress
 ls
 docker compose up -d
 docker compose ps
