@@ -21,7 +21,7 @@
 #### Navigate to the new directory:
    
     mkdir -p /nfs-share/wordpress
-    mkdir -p /nfs-share/wordpress/wordpress-data /mysql
+    mkdir -p /nfs-share/wordpress/wordpress-data
     mkdir -p /nfs-share/wordpress/mysql
     chmod 777 -R /nfs-share/wordpress
     cd /nfs-share/wordpress
