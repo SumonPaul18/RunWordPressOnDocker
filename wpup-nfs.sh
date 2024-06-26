@@ -15,7 +15,7 @@ services:
     image: mysql:latest
     restart: always
     volumes:
-      - nfsvolume-mysql:/var/lib/mysql:rw
+      - /nfs-share/wordpress/mysql/:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: centos@123
       MYSQL_DATABASE: wordpress
@@ -34,21 +34,7 @@ services:
       WORDPRESS_DB_PASSWORD: centos@123
       WORDPRESS_DB_NAME: wordpress
     volumes:
-      - nfsvolume-wordpress:/var/www/html:rw
-volumes:
-  nfsvolume-mysql:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "addr=192.168.0.96,rw,nfsvers=4"
-      device: ":/nfs-share/wordpress/mysql"
-
-  nfsvolume-wordpress:
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "addr=192.168.0.96,rw,nfsvers=4"
-      device: ":/nfs-share/wordpress/wpdata"
+      - /nfs-share/wordpress/wpdata/:/var/www/html:rw
            
 EOF
 
