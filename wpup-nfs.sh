@@ -1,6 +1,14 @@
 #!/bin/bash
-mkdir -p /root/wordpress
-cat <<EOF | sudo tee /root/wordpress/docker-compose.yml
+mkdir -p /nfs-share
+mount 192.168.0.96:/nfs-share /nfs-share
+ls -l /nfs-share
+mkdir -p /nfs-share/wordpress
+mkdir -p /nfs-share/wordpress/wpdata
+mkdir -p /nfs-share/wordpress/mysql
+chmod 775 -R /nfs-share/wordpress
+cd /nfs-share/wordpress
+ls
+cat <<EOF | sudo tee /nfs-share/wordpress/docker-compose.yml
 version: "3.8" 
 services:
   db:
@@ -33,14 +41,14 @@ volumes:
     driver_opts:
       type: "nfs"
       o: "addr=192.168.0.96,rw,nfsvers=4"
-      device: ":/nfs-share/docker/wordpress/mysql"
+      device: ":/nfs-share/wordpress/mysql"
 
   nfsvolume-wordpress:
     driver: local
     driver_opts:
       type: "nfs"
       o: "addr=192.168.0.96,rw,nfsvers=4"
-      device: ":/nfs-share/docker/wordpress/wordpress"
+      device: ":/nfs-share/wordpress/wpdata"
            
 EOF
 
