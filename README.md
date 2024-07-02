@@ -1,5 +1,5 @@
 
-## Install Wordpress On Docker using Docker-Compose 
+## Run Wordpress in Corrent Directory On Docker using Docker-Compose 
 ![WordPressOnDocker](https://github.com/SumonPaul18/RunWordPressOnDocker/blob/main/WordPressOnDocker.gif)
 ---
 ### Run Wordpress-MySQL      
