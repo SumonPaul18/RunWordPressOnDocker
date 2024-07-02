@@ -115,7 +115,7 @@
       db:
         image: mysql:5.7
         volumes:
-          - mysql_data:/var/lib/mysql
+          - /nfs-share/wordpress/mysql/:/var/lib/mysql
         restart: always
         environment:
           MYSQL_ROOT_PASSWORD: centos@123
@@ -151,7 +151,7 @@
           WORDPRESS_DB_NAME: wordpress
       
         volumes:
-          - $PWD/wordpress/:/var/www/html
+          - /nfs-share/wordpress/wordpress-data/:/var/www/html
   
 
 #### Docker Compose UP
