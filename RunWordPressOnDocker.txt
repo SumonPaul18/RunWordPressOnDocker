@@ -45,7 +45,9 @@ services:
       MYSQL_USER: sysadmin
       MYSQL_PASSWORD: centos@123
       # Previous four lines define the main variables needed for the MySQL container to work: database, database username, database user password, and the MySQL root password.
-  
+    volumes:
+      -  ./mysql:/var/lib/mysql
+      
 #wordpress are another service 
   wordpress:
     depends_on:
@@ -62,7 +64,7 @@ services:
       WORDPRESS_DB_NAME: wordpress
 # Similar to MySQL image variables, the last four lines define the main variables needed for the WordPress container to work properly with the MySQL container.
     volumes:
-      ["./:/var/www/html"]
+      ["./wordpress:/var/www/html"]
 volumes:
   mysql: {}
 
@@ -145,9 +147,8 @@ services:
       WORDPRESS_DB_NAME: wordpress
       
     volumes:
-      ["./wordpress:/var/www/html"]
-volumes:
-  mysql_data:
+      - ./wordpress:/var/www/html
+
   
 ++++++++++++++++++++++++++++++++++++++++++
 
