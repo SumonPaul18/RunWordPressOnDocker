@@ -35,7 +35,7 @@ services:
   $WPDIR:
     depends_on:
       - db
-    image: $WPDIR:latest
+    image: wordpress:latest
     restart: always
     ports:
       - "$WPPORT:80"
