@@ -11,6 +11,7 @@ ll /nfs-share
 read -p "$(echo -e "${bgreen}${bold}${blink}Type a Directory Name for store Wordpess: ${nc}")" WPDIR
 echo
 echo
+lsof -i -P -n | grep docker-pr
 read -p "$(echo -e "${bgreen}${bold}${blink}Type Unused Port For Browse WordPess: ${nc}")" WPPORT
 mkdir -p /nfs-share/docker/$WPDIR
 mkdir -p /nfs-share/docker/$WPDIR
