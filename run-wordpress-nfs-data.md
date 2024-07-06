@@ -1,4 +1,4 @@
-## Run Wordpress On Persistent Data using NFS Volume and Docker-Compose 
+## Run Wordpress On Previous Data using NFS Volume & Docker-Compose 
 ![WordPressOnDocker](https://github.com/SumonPaul18/RunWordPressOnDocker/blob/main/WordPressOnDocker.gif)
 ---
 
@@ -19,6 +19,17 @@
           MYSQL_DATABASE: wordpress
           MYSQL_USER: sysadmin
           MYSQL_PASSWORD: centos@123
+      phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        depends_on:
+          - db
+        restart: always
+        environment:
+          PMA_HOST: db
+          PMA_USER: sysadmin
+          PMA_PASSWORD: centos@123
+        ports:
+          - "8009:80"  
       wordpress:
         depends_on:
           - db
