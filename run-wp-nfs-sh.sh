@@ -31,7 +31,7 @@ services:
       PMA_USER: sysadmin
       PMA_PASSWORD: centos@123
     ports:
-      - "8009:80"
+      - "8883:80"
   wordpress:
     depends_on:
       - db
@@ -53,14 +53,14 @@ volumes:
     driver_opts:
       type: "nfs"
       o: "addr=192.168.0.96,rw,nfsvers=4"
-      device: ":/nfs-share/wordpress/mysql"
+      device: ":/nfs-share/docker/wordpress1/mysql"
 
   nfsvolume-wordpress:
     driver: local
     driver_opts:
       type: "nfs"
       o: "addr=192.168.0.96,rw,nfsvers=4"
-      device: ":/nfs-share/wordpress/wpdata"
+      device: ":/nfs-share/docker/wordpress1/wpdata"
            
 EOF
 
