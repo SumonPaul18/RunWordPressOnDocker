@@ -23,7 +23,9 @@ read -p "$(echo -e "${bgreen}${bold}${blink}Create a Directory in NFS Storage fo
 echo
 lsof -i -P -n | grep docker-pr
 echo
-read -p "$(echo -e "${bgreen}${bold}${blink}Type Unused Port For Browse WordPess: ${nc}")" WPPORT
+read -p "$(echo -e "${bgreen}${bold}${blink}Type Unused Port For WordPess Site Browsing: ${nc}")" WPPORT
+echo
+read -p "$(echo -e "${bgreen}${bold}${blink}Type Unused Port For PHP-Admin Site Browsing: ${nc}")" PHPADMINPORT
 mkdir -p $NFSDIR/$WPDIR
 chmod 775 -R $NFSDIR/$WPDIR
 mkdir -p $NFSDIR/$WPDIR/wpdata
@@ -53,7 +55,7 @@ services:
       PMA_USER: sysadmin
       PMA_PASSWORD: centos@123
     ports:
-      - "8009:80"
+      - "$PHPADMINPORT:80"
   wordpress:
     depends_on:
       - db
