@@ -12,32 +12,32 @@ read -p "$(echo -e "${bgreen}${bold}${blink}Enter NFS Storage IP: ${nc}")" NFSIP
 echo -e "${bgreen} Checking NFS Storage Shared Directory  ${nc} "
 showmount -e $NFSIP
 echo
-read -p "$(echo -e "${bgreen}${bold}${blink}Create a Directory for Mount NFS Stoarge in ("/") Directory: ${nc}")" NFSDIR
-mkdir -p /$NFSDIR
+read -p "$(echo -e "${bgreen}${bold}${blink}Choose Directory Where Mount with This Host, Example:-As you see same as typing(/nfs-share): ${nc}")" NFSDIR
+mkdir -p $NFSDIR
 echo
 echo -e "${bgreen} Mount NFS Shared Directory to NFS Client Directory  ${nc} "
-mount $NFSIP:/nfs-share /$NFSDIR
-ll /nfs-share
-read -p "$(echo -e "${bgreen}${bold}${blink}Type a Directory Name for store Wordpess: ${nc}")" WPDIR
+mount $NFSIP:$NFSDIR $NFSDIR
 echo
+ll $NFSDIR
+read -p "$(echo -e "${bgreen}${bold}${blink}Create a Directory in NFS Storage for store Wordpess Data: ${nc}")" WPDIR
 echo
 lsof -i -P -n | grep docker-pr
+echo
 read -p "$(echo -e "${bgreen}${bold}${blink}Type Unused Port For Browse WordPess: ${nc}")" WPPORT
-mkdir -p /nfs-share/docker/$WPDIR
-mkdir -p /nfs-share/docker/$WPDIR
-mkdir -p /nfs-share/docker/$WPDIR/wpdata
-mkdir -p /nfs-share/docker/$WPDIR/mysql
-chmod 775 -R /nfs-share/docker/$WPDIR
-cd /nfs-share/docker/$WPDIR
+mkdir -p $NFSDIR/$WPDIR
+chmod 775 -R $NFSDIR/$WPDIR
+mkdir -p $NFSDIR/$WPDIR/wpdata
+mkdir -p $NFSDIR/$WPDIR/mysql
+cd $NFSDIR/$WPDIR
 ls
-cat <<EOF | sudo tee /nfs-share/docker/$WPDIR/docker-compose.yml
+cat <<EOF | sudo tee $NFSDIR/$WPDIR/docker-compose.yml
 version: "3.8" 
 services:
   db:
     image: mysql:latest
     restart: always
     volumes:
-      - /nfs-share/docker/$WPDIR/mysql/:/var/lib/mysql:rw
+      - nfsvolume-mysql:/var/lib/mysql:rw
     environment:
       MYSQL_ROOT_PASSWORD: centos@123
       MYSQL_DATABASE: wordpress
@@ -67,26 +67,26 @@ services:
       WORDPRESS_DB_PASSWORD: centos@123
       WORDPRESS_DB_NAME: wordpress
     volumes:
-      - /nfs-share/docker/$WPDIR/wpdata/:/var/www/html:rw
+      - nfsvolume-wordpress:/var/www/html:rw
 
 volumes:
   nfsvolume-mysql:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "addr=192.168.0.96,rw,nfsvers=4"
-      device: ":/nfs-share/docker/wordpress1/mysql"
+      o: "addr=$NFSIP,rw,nfsvers=4"
+      device: ":$NFSDIR/$WPDIR/mysql"
 
   nfsvolume-wordpress:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "addr=192.168.0.96,rw,nfsvers=4"
-      device: ":/nfs-share/docker/wordpress1/wpdata"
+      o: "addr=$NFSIP,rw,nfsvers=4"
+      device: ":$NFSDIR/$WPDIR/wpdata"
            
 EOF
 
-cd /nfs-share/wordpress
+cd $NFSDIR/$WPDIR
 ls
 docker compose up -d
 docker compose ps
