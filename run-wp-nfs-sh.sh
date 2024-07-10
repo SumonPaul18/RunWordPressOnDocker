@@ -8,14 +8,15 @@ echo -e "${bgreen} Run WordPess-MySql-PhpAdmin on NFS Volume ${nc} "
 echo
 systemctl is-active --quiet nfs-common && echo -e "${bgreen} NFS-Common is Running ${nc} "
 echo
-read -p "$(echo -e "${bgreen}${bold}${blink}Type NFS Storage IP: ${nc}")" NFSIP
+read -p "$(echo -e "${bgreen}${bold}${blink}Enter NFS Storage IP: ${nc}")" NFSIP
 echo -e "${bgreen} Checking NFS Storage Shared Directory  ${nc} "
 showmount -e $NFSIP
 echo
-read -p "$(echo -e "${bgreen}${bold}${blink}Type a Directory Name for store Wordpess: ${nc}")" WPDIR
+read -p "$(echo -e "${bgreen}${bold}${blink}Create a Directory for Mount NFS Stoarge in ("/") Directory: ${nc}")" NFSDIR
+mkdir -p /$NFSDIR
 echo
 echo -e "${bgreen} Mount NFS Shared Directory to NFS Client Directory  ${nc} "
-mount 192.168.0.96:/nfs-share /nfs-share
+mount $NFSIP:/nfs-share /$NFSDIR
 ll /nfs-share
 read -p "$(echo -e "${bgreen}${bold}${blink}Type a Directory Name for store Wordpess: ${nc}")" WPDIR
 echo
