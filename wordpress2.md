@@ -22,7 +22,7 @@
         image: wordpress:latest
         restart: always
         ports:
-          - "8004:80"
+          - "8005:80"
         environment:
           WORDPRESS_DB_HOST: db:3306
           WORDPRESS_DB_USER: sysadmin
@@ -43,7 +43,7 @@
         driver_opts:
           type: "nfs"
           o: "addr=192.168.0.96,rw,nfsvers=4"
-          device: ":/nfs-share/docker/wordpress2/wordpress"
+          device: ":/nfs-share/docker/wordpress2/wpdata"
     EOF
 ####
     docker compose up -d
