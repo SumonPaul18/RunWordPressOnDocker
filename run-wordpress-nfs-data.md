@@ -55,7 +55,7 @@
           type: "nfs"
           o: "addr=192.168.0.96,rw,nfsvers=4"
           device: ":/nfs-share/docker/wordpress-data/wordpress"
-
+    EOF
 ####
     docker compose up -d
 ####
