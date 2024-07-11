@@ -1,12 +1,9 @@
 ## Run Wordpress On Previous Data using NFS Volume & Docker-Compose 
 ![WordPressOnDocker](https://github.com/SumonPaul18/RunWordPressOnDocker/blob/main/WordPressOnDocker.gif)
 ---
-
 ####
     mkdir wordpress && cd wordpress
-####
-    nano docker-compose.yml
-####
+    cat <<EOF | sudo tee /root/wordpress/docker-compose.yml
     version: "2.2"
     services:
       db:
@@ -36,7 +33,7 @@
         image: wordpress:latest
         restart: always
         ports:
-          - "8001:80"
+          - "8011:80"
         environment:
           WORDPRESS_DB_HOST: db:3306
           WORDPRESS_DB_USER: sysadmin
