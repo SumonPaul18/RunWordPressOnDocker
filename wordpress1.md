@@ -7,7 +7,7 @@
     version: "2.2"
     services:
       db:
-        image: mysql:5.7
+        image: mysql:latest
         restart: always
         volumes:
           - nfsvolume-mysql:/var/lib/mysql:rw
