@@ -2,7 +2,7 @@
 ![WordPressOnDocker](https://github.com/SumonPaul18/RunWordPressOnDocker/blob/main/WordPressOnDocker.gif)
 ---
 ####
-    mkdir wordpress && cd wordpress
+    mkdir -p /root/wordpress && cd wordpress
     cat <<EOF | sudo tee /root/wordpress/docker-compose.yml
     version: "2.2"
     services:
